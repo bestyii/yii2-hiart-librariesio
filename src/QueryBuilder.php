@@ -28,9 +28,12 @@ class QueryBuilder extends \hiqdev\hiart\rest\QueryBuilder
         return $this->from . 's';
     }
 
+    //temp fixed
+    //todo confirm for conflict environment or php7.4
     public function buildQueryParams(Query $query)
     {
-        $params = parent::buildQueryParams($query);
+//        $params = parent::buildQueryParams($query);
+        $params = $query->where;
         if ($query->limit) {
             $params['per_page'] = $query->limit;
             if ($query->offset) {
@@ -39,5 +42,10 @@ class QueryBuilder extends \hiqdev\hiart\rest\QueryBuilder
         }
 
         return $params;
+    }
+
+    public function buildBody(Query $query)
+    {
+        return null;
     }
 }
